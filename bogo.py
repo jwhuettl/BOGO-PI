@@ -1,82 +1,93 @@
-#!/usr/bin/env python3
-
-# importing things
+# importing libraries
+import os
+import sys
 import random
+import time
 from timeit import default_timer as timer
 
-array = [] # the array we will be working with
+filename = "logs/" # log file name
 
 def build(size):
-  # builds are array of length size
-  # also shuffles the array to prepare for bogo
+  # builds an array of length *size*
+  # and returns the array
+  # shuffles the array to prepare it
 
-  array = range(0, size)
-  print array
-
+  array = list(range(0, size))
   random.shuffle(array)
+
   return array
 
-def randomized_bogo(array):
-  # runs bogo sort on array
+def randomized_bogo(deck):
+  # runs the randomized version of bogo sort
+  # returns a boolean if the array is sorted
+  # or array if not (this may be changed)
 
-  random.shuffle(array) # this is RANDOMIZED BOGO sort
-  return array
-
-def bogo_check(array):
-  # checks to see if array has been sorted
-  # steps through entire array as algorithm is intended to do
   sorted_flag = True
 
-  for element in array:
-    if (array[element] != element):
+  print(deck)
+
+  random.shuffle(deck)
+
+  for element in deck:
+    if (deck[element] != element):
       sorted_flag = False
+
+  print(deck)
 
   return sorted_flag
 
-def sorter(int):
-  # carries out all of the above functions
-  # does the bulk of the work (implements all of the functions)
+def logger(filename, size, time, permutations):
+  # logs the results from each size
+  # appends to log unique to each run
 
-  filename = "logs/" + str(int) + ".log"
-  log_file = open(filename, "a")
+  logfile = open(filename, "a")
+  logfile.write("size: " + str(size) + "\n")
+  logfile.write("time elapsed: " + str(time) + "\n")
+  logfile.write("permutations: " + str(permutations) + '\n\n\n')
+  logfile.close()
+
+  # also calls twitter bot to tweet out
+  # results so i dont have to check on it
+
+  # twitter bot will be in another file
+  # TODO: add twitter bot
+
+  cmd = "python3 bogo-bot.py " + str(size) + " " + str(time) + " " + str(permutations)
+  os.system(cmd)
+
+
+def worker(int):
+  # implements the above functions
 
   counter = 0
+  deck = build(int)
   sorted = False
-  array = build(int)
-
   start = timer()
 
-  # loop doing the actual sorting
-  while (not sorted):
-    bogod_array = randomized_bogo(array)
+  while(not sorted):
+    sorted = randomized_bogo(deck)
     counter += 1
 
-    sorted = bogo_check(bogod_array)
-    log_file.write(str(bogod_array) + " " + str(sorted) + "\n")
-
   end = timer()
-  sorted_time = (end - start) # seconds elapsed
 
-  # adding info to end of log_file
-  log_file.write("attempts: " + str(counter) + "\n")
-  log_file.write("time elapsed: " + str(sorted_time) + "\n")
-  log_file.close()
+  total_time = end - start
 
-  # creating tweet for bot.
-  # paused for bot and log copying ??
-  tweet = ("BOGOPI has completed " + str(int) + "!\n" + "attempts: " + str(counter) + "\n" +  "time elapsed: " + str(sorted_time))
+  logger(filename, int, total_time, counter)
 
-  print(tweet)
-  print("\n\n")
+
 
 
 if __name__ == '__main__':
-  # main code for BOGO PI
+  # main code for bogo
 
-  print("BOGO PI\n\n")
+  bogo_start = time.time()
 
-  # loop for actual
-  for length in range(1, 5):
-    sorter(length)
+  filename += str(int(bogo_start))
+  logfile = open(filename, "a")
+  logfile.write(str(bogo_start) + "\n\n")
+  logfile.close()
 
-  print("\n\ndone")
+  for item in range(1, 15):
+    worker(item)
+
+  print('done')
