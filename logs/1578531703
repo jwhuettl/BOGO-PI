@@ -1,0 +1,60 @@
+1578531703.6423755
+
+size: 1
+time elapsed: 2.0228999346727505e-05
+permutations: 1
+
+
+size: 2
+time elapsed: 3.16400000883732e-05
+permutations: 1
+
+
+size: 3
+time elapsed: 0.00011861399980261922
+permutations: 7
+
+
+size: 4
+time elapsed: 0.0004185600009805057
+permutations: 28
+
+
+size: 5
+time elapsed: 0.0005636650002998067
+permutations: 74
+
+
+size: 6
+time elapsed: 0.0012221079996379558
+permutations: 152
+
+
+size: 7
+time elapsed: 0.008790545000010752
+permutations: 1021
+
+
+size: 8
+time elapsed: 1.231893999998647
+permutations: 91227
+
+
+size: 9
+time elapsed: 1.4491140569989511
+permutations: 99743
+
+
+1578531756.136894
+
+1578531788.0052602
+
+size: 10
+time elapsed: 45.53665154400005
+permutations: 2954484
+
+
+1578532061.7200418
+
+1578532441.0131803
+

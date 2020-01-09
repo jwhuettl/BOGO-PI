@@ -52,4 +52,4 @@ A *possibly* never ending and horribly written CPU benchmark?
 #### TO DO
 1. Restart function (in the event of power loss or moving the machine)
 2. BOGO-PI paper
-~3. Twitter Bot~
+3. ~Twitter Bot~

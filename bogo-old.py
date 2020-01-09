@@ -95,46 +95,20 @@ def resume():
     if line[:6] == "size: ":
       last = int(line[6:])
 
-  logfile.close()
-
-  ret = [file, last]
-
-  return ret
+  return last
 
 
 if __name__ == '__main__':
   # main code for bogo
 
-  current = time.time()
+  bogo_start = time.time()
 
-  args = sys.argv
+  filename += str(int(bogo_start))
+  logfile = open(filename, "a")
+  logfile.write(str(bogo_start) + "\n\n")
+  logfile.close()
 
-  if len(args) > 1:
-    # if resuming
-    ret = resume()
-    filename += ret[0]
-    size = ret[1] + 1
-
-    # adding info to log file
-    logfile = open(filename, "a")
-    logfile.write(str(current) + "\n\n")
-    logfile.close()
-
-    # tweeting out resuming
-    cmd = "python3 bogo-bot.py " + str(current)
-    os.system(cmd)
-
-  else:
-
-    size = 1
-
-    filename += str(int(current))
-    logfile = open(filename, "a")
-    logfile.write(str(current) + "\n\n")
-    logfile.close()
-
-
-  for item in range(size, 15):
+  for item in range(1, 15):
     worker(item)
 
   print('done')
