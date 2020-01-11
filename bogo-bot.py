@@ -16,6 +16,13 @@ def logger(api, size, time, permutations):
 
   api.update_status(tweet)
 
+
+def done(api, str, time):
+  # if ever completed this will be run
+  tweet = "BOGO PI has completed its task!\ntime: " + str(time) + "\n" + str(str)
+
+  api.update_status(tweet)
+
 def resume(api, time):
   # called when bogo-pi is resumed for better logging from twitter
 
@@ -30,6 +37,11 @@ if __name__ == '__main__':
 
   if len(args) == 2:
     resume(api, args[1])
+
+  elif len(args) == 3:
+    # if done ?!?!?!?!??!??!??!??!??!???!??!?!??!??!?!???!??!??!
+    done(api, arg[1], args[2])
+
 
   elif len(args) == 4:
     logger(api, args[1], args[2], args[3])

@@ -50,10 +50,11 @@ def logger(filename, size, time, permutations):
   # results so i dont have to check on it
 
   # twitter bot will be in another file
-  # TODO: add twitter bot
+  # DONE --TODO: add twitter bot-- DONE
+  # uncommenting these lines allow for twitter bot functionality
 
-  cmd = "python3 bogo-bot.py " + str(size) + " " + str(time) + " " + str(permutations)
-  os.system(cmd)
+  # cmd = "python3 bogo-bot.py " + str(size) + " " + str(time) + " " + str(permutations)
+  # os.system(cmd)
 
 
 def worker(int):
@@ -83,6 +84,10 @@ def resume():
   path += "/logs"
   test = os.listdir(path)
 
+  # assumes that last file is the last run
+  # may not always be true but whatever
+  # if completely restarting, might be best 
+  # clear out log files or move them elsewhere
   file = test[-1]
 
   filename = "logs/" + file
@@ -97,14 +102,15 @@ def resume():
 
   logfile.close()
 
+  # returning both filename and last input size
   ret = [file, last]
-
   return ret
 
 
 if __name__ == '__main__':
   # main code for bogo
 
+  # added to the file
   current = time.time()
 
   args = sys.argv
@@ -120,21 +126,27 @@ if __name__ == '__main__':
     logfile.write(str(current) + "\n\n")
     logfile.close()
 
-    # tweeting out resuming
-    cmd = "python3 bogo-bot.py " + str(current)
-    os.system(cmd)
+    # tweeting out resuming (uncomment if you want a twitter bot)
+    # cmd = "python3 bogo-bot.py " + str(current)
+    # os.system(cmd)
 
   else:
-
+    # if starting a new run
     size = 1
 
+    # adding info to logfile
     filename += str(int(current))
     logfile = open(filename, "a")
     logfile.write(str(current) + "\n\n")
     logfile.close()
 
-
+  # loop for all work done
   for item in range(size, 15):
     worker(item)
 
+  # might never happen
+  # tweeting out done
+  completed = time.time()
+  # cmd = "python3 bogo-bot.py done " + str(completed)
+  # os.system(cmd)
   print('done')
