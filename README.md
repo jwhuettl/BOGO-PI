@@ -29,3 +29,7 @@ or <br />
 3. bogo-rec.py : nonworking recursive bogosort
 3. /logs : logs folder
 4. /docs : contains extended documentation  
+
+
+Link to twitter bot::
+https://twitter.com/jacksondotdev
