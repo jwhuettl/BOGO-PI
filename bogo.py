@@ -57,7 +57,7 @@ def logger(filename, done, size, time, permutations):
   # TODO: daily logging via twitter
   # uncommenting these lines allow for twitter bot functionality
 
-  # cmd = "python3 bogo-bot.py " + str(done) + " " +  str(size) + " " + str(time) + " " + str(permutations)
+  # cmd = "python3 bogo-bot.py " + done + " " +  str(size) + " " + str(time) + " " + str(permutations)
   # os.system(cmd)
 
 
@@ -164,6 +164,6 @@ if __name__ == '__main__':
   # might never happen
   # tweeting out done
   completed = time.time()
-  # cmd = "python3 bogo-bot.py done " + str(completed)
-  # os.system(cmd)
+  cmd = "python3 bogo-bot.py done " + str(completed)
+  os.system(cmd)
   print('done')

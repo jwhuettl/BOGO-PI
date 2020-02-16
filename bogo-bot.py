@@ -27,18 +27,18 @@ def logger(api, done, size, time, permutations):
 
   api.update_status(tweet)
 
-  if done == "True":
+  if done == True:
     # if bogo-pi has completed a certain input size || completion
     tweet = "BOGO PI has completed " + str(size) + "!\n" + "time elapsed: " + str(time) + "\n" + "permutations: " + str(permutations) + "\n"
 
   else:
     # should be called ~daily to update progress
-    tweet = "BOGO PI update: \n" + str(size) + "\n" + "permutations: " + str(permutations) + "\n"
+    tweet = "BOGO PI update: \n" +  "size: " + str(size) + "\n" + "permutations: " + str(permutations) + "\n"
 
   # actually sending tweet
   api.update_status(tweet)
 
-
+  print(tweet)
 
 def resume(api, time):
   # called when bogo-pi is resumed for better logging from twitter
