@@ -36,24 +36,28 @@ def randomized_bogo(deck):
 
   return sorted_flag
 
-def logger(filename, size, time, permutations):
+def logger(filename, done, size, time, permutations):
   # logs the results from each size
   # appends to log unique to each run
 
-  logfile = open(filename, "a")
-  logfile.write("size: " + str(size) + "\n")
-  logfile.write("time elapsed: " + str(time) + "\n")
-  logfile.write("permutations: " + str(permutations) + '\n\n\n')
-  logfile.close()
+
+  # only if sorted
+  if (done):
+    logfile = open(filename, "a")
+    logfile.write("size: " + str(size) + "\n")
+    logfile.write("time elapsed: " + str(time) + "\n")
+    logfile.write("permutations: " + str(permutations) + '\n\n\n')
+    logfile.close()
 
   # also calls twitter bot to tweet out
   # results so i dont have to check on it
 
   # twitter bot will be in another file
   # DONE --TODO: add twitter bot-- DONE
+  # TODO: daily logging via twitter
   # uncommenting these lines allow for twitter bot functionality
 
-  # cmd = "python3 bogo-bot.py " + str(size) + " " + str(time) + " " + str(permutations)
+  # cmd = "python3 bogo-bot.py " + str(done) + " " +  str(size) + " " + str(time) + " " + str(permutations)
   # os.system(cmd)
 
 
@@ -64,16 +68,29 @@ def worker(int):
   deck = build(int)
   sorted = False
   start = timer()
+  mark = start # initial mark is start
+
+  # TODO: add mark for ~daily tweeting progress
 
   while(not sorted):
     sorted = randomized_bogo(deck)
     counter += 1
 
+    # check for mark // unsure about performance hit of this
+    # should really be a range of acceptable times
+    now = time.time()
+    if  mark + 86300 < now < mark + 86500:
+      # call logging
+      logger(filename, False, int, now, counter)
+
+      # creating new mark
+      mark = now
+
   end = timer()
 
   total_time = end - start
 
-  logger(filename, int, total_time, counter)
+  logger(filename, True, int, total_time, counter)
 
 
 def resume():
@@ -86,7 +103,7 @@ def resume():
 
   # assumes that last file is the last run
   # may not always be true but whatever
-  # if completely restarting, might be best 
+  # if completely restarting, might be best
   # clear out log files or move them elsewhere
   file = test[-1]
 
