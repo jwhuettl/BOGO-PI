@@ -23,10 +23,7 @@ def logger(api, done, size, time, permutations):
   # DONE -- TODO: add daily ish tweet logging progress
   #               or tweet every 88473600 permutations -- DONE
   # however im not sure if it actually works
-
-
-  api.update_status(tweet)
-
+  
   if done == True:
     # if bogo-pi has completed a certain input size || completion
     tweet = "BOGO PI has completed " + str(size) + "!\n" + "time elapsed: " + str(time) + "\n" + "permutations: " + str(permutations) + "\n"

@@ -68,7 +68,7 @@ def worker(int):
   deck = build(int)
   sorted = False
   start = timer()
-  mark = start # initial mark is start
+  mark = int(start) # initial mark is start
 
   # TODO: add mark for ~daily tweeting progress
 
@@ -78,8 +78,8 @@ def worker(int):
 
     # check for mark // unsure about performance hit of this
     # should really be a range of acceptable times
-    now = time.time()
-    if  mark + 86300 < now < mark + 86500:
+    now = int(time.time())
+    if  now == mark + 86400:
       # call logging
       logger(filename, False, int, now, counter)
 
