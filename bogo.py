@@ -7,6 +7,8 @@ from timeit import default_timer as timer
 
 filename = "logs/" # log file name
 
+# NOTE: 2038 bug will affect this program
+
 def build(size):
   # builds an array of length *size*
   # and returns the array
@@ -24,7 +26,7 @@ def randomized_bogo(deck):
 
   sorted_flag = True
 
-  print(deck)
+  # print(deck)
 
   random.shuffle(deck)
 
@@ -32,7 +34,7 @@ def randomized_bogo(deck):
     if (deck[element] != element):
       sorted_flag = False
 
-  print(deck)
+  # print(deck)
 
   return sorted_flag
 
@@ -57,31 +59,34 @@ def logger(filename, done, size, time, permutations):
   # TODO: daily logging via twitter
   # uncommenting these lines allow for twitter bot functionality
 
-  # cmd = "python3 bogo-bot.py " + done + " " +  str(size) + " " + str(time) + " " + str(permutations)
+  # cmd = "python3 bogo-bot.py " + str(done) + " " +  str(size) + " " + str(time) + " " + str(permutations)
   # os.system(cmd)
 
 
-def worker(int):
+def worker(size):
   # implements the above functions
 
   counter = 0
-  deck = build(int)
+  deck = build(size)
   sorted = False
   start = timer()
-  mark = int(start) # initial mark is start
+  mark = int(time.time()) # initial mark is ~start
 
-  # TODO: add mark for ~daily tweeting progress
+  # DONE -- TODO: add mark for ~daily twitter updates
+  #               bot tweets out twice a day --  DONE
 
   while(not sorted):
     sorted = randomized_bogo(deck)
     counter += 1
 
     # check for mark // unsure about performance hit of this
-    # should really be a range of acceptable times
+
     now = int(time.time())
-    if  now == mark + 86400:
+
+
+    if  now == mark + 43200:
       # call logging
-      logger(filename, False, int, now, counter)
+      logger(filename, False, size, now, counter)
 
       # creating new mark
       mark = now
@@ -90,7 +95,7 @@ def worker(int):
 
   total_time = end - start
 
-  logger(filename, True, int, total_time, counter)
+  logger(filename, True, size, total_time, counter)
 
 
 def resume():
