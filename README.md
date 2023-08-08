@@ -1,35 +1,33 @@
-# BOGO PI
+# BOGO PI - V2.0
 
 **DISCLAIMER: THIS IS HORRIBLE and PROBABLY THE WORST THING EVER**
 
-#### Purpose
-To create something so utterly stupid and without purpose, that it will actually never finish. Also, I thought it might be a bit funny, and when, the robots take over, I will probably be executed for forcing a machine to do this.
-<br />
-However, I do think this could be an interesting to do an in-depth look at and I have not seen anyone else do something this dumb. Also it is a great example of putting algorithmic analysis in practice.
+## Purpose
 
-#### How it works
-This program implements the randomized bogosort algorithm and works its way up from an input size of 1 to 52. The randomized bogosort algorithm works by randomly shuffling all elements and checking for sortedness, this process is repeated until the input has been sorted.
+honestly, there really is no purpose to this, other than curiosity about the worse possible sorting algorithm. additionally, there is something both absurd and hilarious about testing possibly the worst performing sorting algorithm that will eventually (at some point) maybe finishing sorting the input. 
 
-#### How to use it
-Currently, all twitter bot commands have been commented out, so as to not throw errors about missing configurations. There are notes within the code about how to enable that feature.
-<br />
-To use enter this command: <br />
-`python3 bogo.py` <br />
-or <br />
-`python3 bogo.py r` <-- to resume <br />
+### How It Works
 
-#### Dependencies
-1. Python 3 (written in this language)
-2. Tweepy (for twitterbot functions)
-3. time (it will take awhile)
+this is an implementation of randomized bogosort and works its way through input sizes from 1 item to 52 items (the size of a deck of cards). randomized bogosort works by shuffling all items and checking each item for sortedness, this process is repeated until the sort array is returned. 
 
-#### Files
-1. bogo.py : actual bogosort
-2. bogo-bot.py : twitterbot code
-3. bogo-rec.py : nonworking recursive bogosort
-3. /logs : logs folder
-4. /docs : contains extended documentation  
+> see the /docs directory for a more detailed and mathematical evaluation and description of bogosort.
+
+### Why Python
+
+python was chosen as it is pretty simple to code and the language has a builtin shuffle function, which makes much of the work much simpler. additionally, python is really human readable, and provides a lot of easy extension and freedom in both typing and without many of the seeming limitations of other languages. 
+
+> honestly, its just what i though of at the time, between the builtin shuffle and it being the first language i ever learned.
+
+### Dependencies
+
+1. Python 3
+2. time (honestly probably too much)
+
+### Hardware
+
+for a multitude of reasons, this project will need some sort of hardware, and due to the eventuality of maxing out 32-bit architecture and its max integer limit, 64-bit will be necessary. 
 
 
-Link to twitter bot::
-https://twitter.com/jacksondotdev
+
+
+
