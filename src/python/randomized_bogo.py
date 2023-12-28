@@ -1,4 +1,5 @@
 import random
+import sys
 
 # python 3 implementation of randomized bogosort
 # returns tuple of sortedness (bool) and input (list)
@@ -17,24 +18,33 @@ def randomized_bogosort(input):
 
 # recursive implementation of randomized bogosort
 # input is input list and the amount of interations
+# returns tuple of input and count
 
-def recursive_randomized_bogosort(input, count):
 
-  sorted_flag = True
+def recursive_randomized_bogosort(input, iterations):
 
-  static_input = input;
+  sys.setrecursionlimit(1000000000)
 
-  random.suffle(input)
+  random.shuffle(input)
+  sorted = False
+  iterations += 1
 
   for element in input:
     if (input[element] != element):
       sorted = False
 
-  count += 1
 
   if not sorted:
-      # log here
-      recursive_randomized_bogosort(static_input, count);
+    recursive_randomized_bogosort(input, iterations)
   else:
-      # log here
-      return (sorted, input, count)
+    return (sorted, iterations)
+
+
+  
+  
+
+  # if not sorted:
+  #   recursive_randomized_bogosort(static_input, count)
+  # else:
+  #   return (sorted, input, count)
+  

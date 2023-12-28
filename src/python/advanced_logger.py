@@ -6,7 +6,7 @@ import time;
 
 # saves output of randomized_bogo locally 
 
-def local_logging()
+def local_logging(output):
 
 
 
