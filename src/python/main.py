@@ -1,50 +1,24 @@
-from randomized_bogo import randomized_bogosort, recursive_randomized_bogosort
-from helper import deck_builder
+
+from bogo import randomized_bogosort
+
+# creates a deck of size size
+
+def build_deck(size):
+    return list(range(0, size))
 
 def main():
-  results = []
+    limit = 10 # will change to input var
 
-  for input in range(10):
-    deck = deck_builder(input)
-    sorted = False
-    iteration = 0
+    for input in range(limit):
+        deck = build_deck(input)
+        sorted = False
 
-    while not sorted:
-      output = randomized_bogosort(deck)
-      iteration += 1
-      
+        while not sorted:
+            output = randomized_bogo(deck)
 
-      if (output[0]):
-        sorted = True
-        dict = {
-          'length': input,
-          'iterations': iteration
-        }
-
-        results.append(dict)
-
-    print(output)
-
-
-def recursive_main():
-
-  results = []
-
-  for input in range(10):
-    deck = deck_builder(input)
-    
-    result = recursive_randomized_bogosort(deck, 0)
-
-    print(result)
-  
-  
-    
-
-
+            if (output)
+                sorted = True
 
 
 if __name__ == '__main__':
-  recursive_main()
-
-
-
+    main()

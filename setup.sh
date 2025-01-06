@@ -7,9 +7,10 @@ then
   mkdir logs
 fi
 
-# checking for python 3
+# check for python3
 
-if [[ ! "$(python3 -V)" =~ "python 3"]]
-then
-  echo "Please install Python 3"
-fi
+
+# check for c compiler if needed
+
+
+

@@ -1,0 +1,16 @@
+notes for bogo pi
+
+  iteration count
+    
+    move to approximate count 
+      1. saves on memory
+      2. avoid some integer funkery
+
+    how it might work
+      1. bench mark 1 second with count (this is our approximate iterations per second)
+      2. take marker at start
+      3. (do the stuff)
+      4. marker at end 
+      5. math time (multiple seconds by count)
+
+
